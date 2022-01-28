@@ -13,9 +13,14 @@ class BaseModel:
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
 
-         def __str__(self):
+    def __str__(self):
         """Overwrites the inbuilt __str__ method
+
         Returns:
             [<class name>] (<self.id>) <self.__dict__>
         """
         return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
+    
+    def save(self):
+        """Updates attribute updated_at with the current datetime"""
+        self.updated_at = datetime.datetime.now()
