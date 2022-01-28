@@ -12,3 +12,10 @@ class BaseModel:
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
+
+         def __str__(self):
+        """Overwrites the inbuilt __str__ method
+        Returns:
+            [<class name>] (<self.id>) <self.__dict__>
+        """
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
