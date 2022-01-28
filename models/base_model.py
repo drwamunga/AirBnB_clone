@@ -24,3 +24,16 @@ class BaseModel:
     def save(self):
         """Updates attribute updated_at with the current datetime"""
         self.updated_at = datetime.datetime.now()
+
+    def to_dict(self):
+        """
+        Adds a key __class__ with the class name of object
+        Converts created_at and updated_at to string object in ISO format
+        Returns:
+            A dictionary containing all keys/values of __dict__ of the instance
+        """
+        my_dict = self.__dict__
+        my_dict['created_at'] = self.created_at.isoformat()
+        my_dict['updated_at'] = self.updated_at.isoformat()
+        my_dict['__class__'] = type(self).__name__
+        return my_dict
