@@ -30,4 +30,22 @@ commands = ["do_show",
             ]
 
 
-            
+class HBNBCommand(cmd.Cmd):
+    """Representation of a HBNBCommand"""
+
+    prompt = "(hbnb) "
+
+    def emptyline(self):
+        return False
+
+    def do_quit(self, arg):
+        """exit the program"""
+        return True
+
+    def do_EOF(self, arg):
+        """exit the program"""
+        return True
+
+    def do_create(self, line):
+        """creates a new instance of BaseModel, saves it and prints the id"""
+        args = line.split()
