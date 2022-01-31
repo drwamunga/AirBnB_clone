@@ -75,3 +75,19 @@ def do_show(self, line):
             print(objects_dic[args[0]+"."+args[1]])
         else:
             print("** no instance found **")
+
+def do_destroy(self, line):
+        """deletes an instance based on the class name and id"""
+        args = line.split()
+        objects_dic = storage.all()
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in white_list:
+            print("** class doesn't exist **")
+        elif len(args) != 2:
+            print("** instance id missing **")
+        elif args[0]+"."+args[1] in objects_dic:
+            storage.all().pop(args[0]+"."+args[1])
+            storage.save()
+        else:
+            print("** no instance found **")
