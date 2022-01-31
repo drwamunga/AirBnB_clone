@@ -141,3 +141,17 @@ def do_update(self, line):
                     value = float(value)
             setattr(storage.all()[key], attr, value)
             storage.all()[key].save()
+
+def do_count(self, line):
+        """retrieve the number of instances of a class"""
+        args = line.split()
+        objects_dic = storage.all()
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in white_list:
+            print("** class doesn't exist **")
+        pichu = 0
+        for i in objects_dic:
+            if objects_dic[i].__class__.__name__ == args[0]:
+                pichu += 1
+        print(pichu)
