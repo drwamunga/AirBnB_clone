@@ -91,3 +91,21 @@ def do_destroy(self, line):
             storage.save()
         else:
             print("** no instance found **")
+
+def do_all(self, line):
+        """prints all string representation of all instances
+           based (or not) on the class name"""
+        args = line.split()
+        objects_dic = storage.all()
+        objects_list = []
+        if len(args) == 0:
+            for key in objects_dic:
+                objects_list.append(objects_dic[key].__str__())
+            print(objects_list)
+        elif args[0] in white_list:
+            for key in objects_dic:
+                if objects_dic[key].__class__.__name__ == args[0]:
+                    objects_list.append(objects_dic[key].__str__())
+            print(objects_list)
+        else:
+            print("** class doesn't exist **")
