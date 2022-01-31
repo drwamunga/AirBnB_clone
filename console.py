@@ -19,6 +19,7 @@ class_list = {"BaseModel": BaseModel,
               "Place": Place,
               "Review": Review
               }
+
 white_list = []
 for key in class_list:
     white_list.append(key)
