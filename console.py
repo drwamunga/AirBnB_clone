@@ -109,3 +109,35 @@ def do_all(self, line):
             print(objects_list)
         else:
             print("** class doesn't exist **")
+
+def do_update(self, line):
+        """updates an instance based on the class name and id
+           by adding or updating attribute"""
+        args = line.split()
+        objects_dic = storage.all()
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in white_list:
+            print("** class doesn't exist **")
+        elif len(args) < 2:
+            print("** instance id missing **")
+        elif args[0]+"."+args[1] not in objects_dic:
+            print("** no instance found **")
+        elif len(args) < 3:
+            print("** attribute name missing **")
+        elif len(args) < 4:
+            print("** value missing **")
+        else:
+            key = args[0]+"."+args[1]
+            attr = args[2]
+            value = args[3].replace('"', ' ')
+            inst = objects_dic[key]
+            if hasattr(inst, attr) and type(getattr(inst, attr)) is int:
+                if (value).isnumeric():
+                    value = int(value)
+            elif hasattr(inst, attr) and type(getattr(inst, attr)) is float:
+                idk = args[3].split(".")
+                if idk[0].isnumeric() and idk[1].isnumeric():
+                    value = float(value)
+            setattr(storage.all()[key], attr, value)
+            storage.all()[key].save()
